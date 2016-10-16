@@ -59,6 +59,7 @@ class OrderedTree:
                 break
 
     # Reference: https://www.tutorialspoint.com/data_structures_algorithms/tree_traversal.htm
+    # left-root-right
     def print_in_order(self, pointer=0):
         # Check if the tree is empty
         if len(self.values) == 0:
@@ -69,8 +70,33 @@ class OrderedTree:
             print(self.values[pointer])
             self.print_in_order(self.right[pointer])
 
+    # root-left-right
+    def print_pre_order(self, pointer=0):
+        # Check if the tree is empty
+        if len(self.values) == 0:
+            raise IndexError("The tree is empty")
+
+        if pointer is not None:
+            print(self.values[pointer])
+            self.print_pre_order(self.left[pointer])
+            self.print_pre_order(self.right[pointer])
+
+    # left-right-root
+    def print_post_order(self, pointer=0):
+        # Check if the tree is empty
+        if len(self.values) == 0:
+            raise IndexError("The tree is empty")
+
+        if pointer is not None:
+            self.print_post_order(self.left[pointer])
+            print(self.values[pointer])
+            self.print_post_order(self.right[pointer])
 
 orderedTree = OrderedTree(10)
 orderedTree.add_items(6, 15, 3, 7, 11, 12, 17, 100, 200)
 orderedTree.dump()
+
+# Change me!
 orderedTree.print_in_order()
+# orderedTree.print_pre_order()
+# orderedTree.print_post_order()
